@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect, useRef } from "react";
+import { flushSync } from "react-dom";
+import * as Switch from "./components/Switch";
+import { IconMoon, IconSun } from "./components/Icons";
+import "./index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const ref = useRef(null);
+
+  const toggleDarkMode = async (isDarkMode) => {
+    if (
+      !ref.current ||
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setIsDarkMode(isDarkMode);
+      return;
+    }
+
+    await document.startViewTransition(() => {
+      flushSync(() => {
+        setIsDarkMode(isDarkMode);
+      });
+    }).ready;
+
+    // Obtener la posición del elemento que activa el cambio
+    const { top, left, width, height } = ref.current.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const right = window.innerWidth - left;
+    const bottom = window.innerHeight - top;
+    const maxRadius = Math.hypot(Math.max(left, right), Math.max(top, bottom));
+
+    // Aplicar la animación usando View Transitions API
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 500,
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={`h-screen w-screen flex items-center justify-center ${isDarkMode ? 'bg-gray-950 text-white' : 'bg-gray-100 text-black'}`}>
+      <Switch.Root checked={isDarkMode} onCheckedChange={toggleDarkMode}>
+        <Switch.Thumb ref={ref}>
+          {isDarkMode ? <IconMoon /> : <IconSun />}
+        </Switch.Thumb>
+      </Switch.Root>
+    </div>
+  );
 }
-
-export default App

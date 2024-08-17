@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" fill="url(#paint0_linear_570_40)" style="mix-blend-mode:multiply" />
+  <rect width="14" height="100" rx="7" transform="matrix(0.965926 -0.258819 0.297857 0.95461 37 53.6235)"
+    fill="#FAFAFA" />
+  <rect x="93" y="40" width="14" height="120" rx="7" fill="#FAFAFA" />
+  <path
+    d="M139.093 99.9994C139.145 96.1337 142.321 93.0363 146.186 93.081C150.052 93.1257 153.144 96.2957 153.093 100.161C153.041 104.027 149.865 107.125 146 107.08C142.134 107.035 139.042 103.865 139.093 99.9994Z"
+    fill="#FAFAFA" />
+  <defs>
+    <linearGradient id="paint0_linear_570_40" x1="100" y1="9.99999" x2="100" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0.5" />
+      <stop offset="1" stop-color="#262626" />
+    </linearGradient>
+  </defs>
+</svg>

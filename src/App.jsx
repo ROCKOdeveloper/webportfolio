@@ -55,9 +55,18 @@ export default function App() {
   }, [isDarkMode]);
 
   return (
-    <>
+    <div className="relative">
+      {/* Porfile */}
       <div
-        className={`h-screen w-screen flex items-center justify-center ${
+        className={`h-screen w-screen ${
+          isDarkMode ? "bg-gray-950 text-white" : "bg-gray-100 text-black"
+        }`}
+      >
+        <h1>hola mundo</h1>
+      </div>
+      {/* chance theme */}
+      <div
+        className={`z-50 bottom-0 right-0 fixed m-4 ${
           isDarkMode ? "bg-gray-950 text-white" : "bg-gray-100 text-black"
         }`}
       >
@@ -71,6 +80,6 @@ export default function App() {
           </Switch.Thumb>
         </Switch.Root>
       </div>
-    </>
+    </div>
   );
 }

@@ -7,3 +7,18 @@
   animation: none;
   mix-blend-mode: normal;
 }
+
+/* Basic */
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::selection {
+  background-color: #f472b6;
+  color: #ffffff;
+}

@@ -12,7 +12,11 @@
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background: radial-gradient(circle, #ffffff 10%, #000000 11%);
+  background-size: 1em 1em;
 }
+
+
 
 ::-webkit-scrollbar {
   width: 0;
@@ -21,4 +25,11 @@ body {
 ::selection {
   background-color: #f472b6;
   color: #ffffff;
+}
+
+
+.active {
+  border: 2px;
+  color: #f472b6;
+  border-bottom: #f472b6;
 }

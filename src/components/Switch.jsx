@@ -9,7 +9,7 @@ export const Root = forwardRef(function Root(
   return (
     <Switch.Root
       className={`w-[30px] h-[30px] rounded-full ${
-        isDarkMode ? "bg-gray-700 ring-gray-700" : "bg-gray-200 ring-gray-300"
+        isDarkMode ? "bg-transparent" : "bg-transparent"
       } transition-colors ${className ?? ""}`}
       {...props}
       ref={ref}
@@ -29,8 +29,8 @@ export const Thumb = forwardRef(function Thumb(
   return (
     <Switch.Thumb
       className={`flex items-center justify-center w-[30px] h-[30px] ${
-        isDarkMode ? "bg-gray-950 text-gray-300" : "bg-white text-gray-600"
-      } shadow hover:shadow-pink-200 rounded-full transition-transform ${className ?? ""}`}
+        isDarkMode ? "bg-neutral-950 text-neutral-50 shadow-neutral-800" : "bg-neutral-50 text-neutral-950 shadow-neutral-500"
+      } shadow rounded-full transition-transform ${className ?? ""}`}
       {...props}
       ref={ref}
     />
